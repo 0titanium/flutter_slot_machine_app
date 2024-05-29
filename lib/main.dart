@@ -1,10 +1,8 @@
 import 'package:flame/game.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_slot_machine_app/slot_machine/slot_machine_game.dart';
 
 void main() {
-  runApp(GameWidget(game: SlotMachineApp()));
-}
-
-class SlotMachineApp extends FlameGame {
-
+  final game = SlotMachineGame();
+  runApp(GameWidget(game: game));
 }
