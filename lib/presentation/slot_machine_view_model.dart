@@ -7,7 +7,11 @@ class SlotMachineViewModel with ChangeNotifier {
 
   void pullLever() {
     _isPulled = true;
-
     notifyListeners();
+
+    Future.delayed(const Duration(milliseconds: 200), () {
+      _isPulled = false;
+      notifyListeners();
+    });
   }
 }
