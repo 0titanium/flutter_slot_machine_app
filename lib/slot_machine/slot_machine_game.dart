@@ -22,12 +22,12 @@ class SlotMachineGame extends FlameGame {
     camera.viewfinder.position = Vector2(machineWidth, machineHeight);
     camera.viewfinder.anchor = Anchor.center;
   }
+}
 
-  Sprite slotMachineSprite(double x, double y, double width, double height) {
-    return Sprite(
-      Flame.images.fromCache('slot_machine_sprite.png'),
-      srcPosition: Vector2(x, y),
-      srcSize: Vector2(width, height),
-    );
-  }
+Sprite slotMachineSprite(double x, double y, double width, double height) {
+  return Sprite(
+    Flame.images.fromCache('slot_machine_sprite.png'),
+    srcPosition: Vector2(x, y),
+    srcSize: Vector2(width, height),
+  );
 }
