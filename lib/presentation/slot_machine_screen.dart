@@ -13,6 +13,7 @@ class _SlotMachineScreenState extends State<SlotMachineScreen> {
   @override
   Widget build(BuildContext context) {
     final viewModel = context.watch<SlotMachineViewModel>();
+    if (!viewModel.isInit) viewModel.setReel();
 
     return Scaffold(
       appBar: AppBar(
@@ -24,22 +25,22 @@ class _SlotMachineScreenState extends State<SlotMachineScreen> {
             'assets/images/slot-machine1.png',
           ),
           Positioned(
-            child: Image.asset('assets/images/slot-symbol1.png'),
             top: 135,
             left: 100,
             width: 70,
+            child: Image.asset(viewModel.firstReelSymbol ?? ''),
           ),
           Positioned(
-            child: Image.asset('assets/images/slot-symbol1.png'),
             top: 135,
             left: 163,
             width: 70,
+            child: Image.asset(viewModel.secondReelSymbol ?? ''),
           ),
           Positioned(
-            child: Image.asset('assets/images/slot-symbol1.png'),
             top: 135,
             left: 227,
             width: 70,
+            child: Image.asset(viewModel.thirdReelSymbol ?? ''),
           ),
           GestureDetector(
             child: viewModel.isPulled
@@ -47,6 +48,7 @@ class _SlotMachineScreenState extends State<SlotMachineScreen> {
                 : Image.asset('assets/images/slot-machine2.png'),
             onTap: () {
               viewModel.pullLever();
+              viewModel.setReel();
             },
           ),
         ]),
