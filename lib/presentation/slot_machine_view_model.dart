@@ -7,23 +7,23 @@ class SlotMachineViewModel with ChangeNotifier {
   bool _isPulled = false;
   bool _isInit = false;
 
-  String _sevenSymbol = sevenSymbolImagePath;
-  String _cherrySymbol = cherrySymbolImagePath;
-  String _bellSymbol = bellSymbolImagePath;
-  String _barSymbol = barSymbolImagePath;
+  final String _sevenSymbol = sevenSymbolImagePath;
+  final String _cherrySymbol = cherrySymbolImagePath;
+  final String _bellSymbol = bellSymbolImagePath;
+  final String _barSymbol = barSymbolImagePath;
 
   String? _firstReelSymbol;
   String? _secondReelSymbol;
   String? _thirdReelSymbol;
 
-  List<String> _symbolList = [
+  final List<String> _symbolList = [
     sevenSymbolImagePath,
     cherrySymbolImagePath,
     bellSymbolImagePath,
     barSymbolImagePath,
   ];
 
-  List<String> _reels = [];
+  final List<String> _reels = [];
 
   bool get isPulled => _isPulled;
 
