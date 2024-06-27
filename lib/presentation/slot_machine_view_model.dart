@@ -7,6 +7,8 @@ class SlotMachineViewModel with ChangeNotifier {
   bool _isPulled = false;
   bool _isInit = false;
 
+  String? _gameMoney;
+
   final String _sevenSymbol = sevenSymbolImagePath;
   final String _cherrySymbol = cherrySymbolImagePath;
   final String _bellSymbol = bellSymbolImagePath;
@@ -27,6 +29,8 @@ class SlotMachineViewModel with ChangeNotifier {
 
   bool get isPulled => _isPulled;
 
+  String? get gameMoney => _gameMoney;
+
   String get sevenSymbol => _sevenSymbol;
 
   String get cherrySymbol => _cherrySymbol;
@@ -44,6 +48,12 @@ class SlotMachineViewModel with ChangeNotifier {
   String? get thirdReelSymbol => _thirdReelSymbol;
 
   bool get isInit => _isInit;
+
+  void setGameMoney() {
+    _gameMoney = '1000';
+    
+    _isInit = true;
+  }
 
   void setReel() {
     int randomFirstSymbolIndex = Random().nextInt(4);
