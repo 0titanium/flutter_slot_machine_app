@@ -13,11 +13,15 @@ class _SlotMachineScreenState extends State<SlotMachineScreen> {
   @override
   Widget build(BuildContext context) {
     final viewModel = context.watch<SlotMachineViewModel>();
-    if (!viewModel.isInit) viewModel.setReel();
+    if (!viewModel.isInit) {
+      viewModel.setGameMoney();
+      viewModel.setReel();
+    }
 
     return Scaffold(
       appBar: AppBar(
         leading: const Icon(Icons.monetization_on_outlined),
+        title: Text(viewModel.gameMoney ?? '1000'),
       ),
       body: SafeArea(
         child: Stack(children: [
@@ -48,7 +52,7 @@ class _SlotMachineScreenState extends State<SlotMachineScreen> {
                 : Image.asset('assets/images/slot-machine2.png'),
             onTap: () {
               viewModel.pullLever();
-              viewModel.setReel();
+              // viewModel.setReel();
             },
           ),
         ]),
