@@ -51,8 +51,6 @@ class SlotMachineViewModel with ChangeNotifier {
 
   void setGameMoney() {
     _gameMoney = '1000';
-    
-    _isInit = true;
   }
 
   void setReel() {
@@ -63,6 +61,12 @@ class SlotMachineViewModel with ChangeNotifier {
     _firstReelSymbol = _symbolList[randomFirstSymbolIndex];
     _secondReelSymbol = _symbolList[randomSecondSymbolIndex];
     _thirdReelSymbol = _symbolList[randomThirdSymbolIndex];
+
+    if (isInit) {
+      _reels.addAll([firstReelSymbol!, secondReelSymbol!, thirdReelSymbol!]);
+    }
+
+    debugPrint(reels.toString());
 
     _isInit = true;
   }
@@ -75,5 +79,45 @@ class SlotMachineViewModel with ChangeNotifier {
       _isPulled = false;
       notifyListeners();
     });
+
+    setReel();
+    notifyListeners();
+
+    isMatch();
+    notifyListeners();
+  }
+
+  void isMatch() {
+    if (!isInit) return;
+
+    if (int.parse(_gameMoney!) < 100) {
+      return;
+    }
+
+    _gameMoney = (int.parse(_gameMoney!) - 100).toString();
+    notifyListeners();
+
+    if (firstReelSymbol == sevenSymbol &&
+        firstReelSymbol == secondReelSymbol &&
+        firstReelSymbol == thirdReelSymbol) {
+      _gameMoney = (int.parse(_gameMoney!) + 1000).toString();
+
+      _reels.clear();
+
+      notifyListeners();
+      return;
+    }
+
+    if (firstReelSymbol == secondReelSymbol ||
+        secondReelSymbol == thirdReelSymbol) {
+      _gameMoney = (int.parse(_gameMoney!) + 200).toString();
+
+      _reels.clear();
+
+      notifyListeners();
+      return;
+    }
+
+    _reels.clear();
   }
 }

@@ -52,7 +52,7 @@ class _SlotMachineScreenState extends State<SlotMachineScreen> {
                 : Image.asset('assets/images/slot-machine2.png'),
             onTap: () {
               viewModel.pullLever();
-              viewModel.setReel();
+              // viewModel.setReel();
             },
           ),
         ]),
