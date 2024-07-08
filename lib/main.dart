@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_slot_machine_app/presentation/slot_machine_screen.dart';
 import 'package:flutter_slot_machine_app/presentation/slot_machine_view_model.dart';
 import 'package:provider/provider.dart';
@@ -12,6 +13,11 @@ class SlotMachineApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    SystemChrome.setPreferredOrientations([
+      DeviceOrientation.landscapeLeft,
+      DeviceOrientation.landscapeRight,
+    ]);
+
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
