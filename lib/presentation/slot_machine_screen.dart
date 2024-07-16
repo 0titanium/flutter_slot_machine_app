@@ -19,43 +19,65 @@ class _SlotMachineScreenState extends State<SlotMachineScreen> {
     }
 
     return Scaffold(
-      appBar: AppBar(
-        leading: const Icon(Icons.monetization_on_outlined),
-        title: Text(viewModel.gameMoney ?? '1000'),
-      ),
+      // appBar: AppBar(
+      //   leading: const Icon(Icons.monetization_on_outlined),
+      //   title: Text(viewModel.gameMoney ?? '1000'),
+      // ),
       body: SafeArea(
-        child: Stack(children: [
-          Image.asset(
-            'assets/images/slot-machine1.png',
+        child: Center(
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              SizedBox(
+                width: 200,
+                child: Text('sampleText'),
+              ),
+              SizedBox(
+                width: 100,
+                child: ListWheelScrollView.useDelegate(
+                  physics: const BouncingScrollPhysics(),
+                  itemExtent: 80,
+                  controller: ScrollController(),
+                  childDelegate: ListWheelChildLoopingListDelegate(
+                    children: viewModel.symbolList
+                        .map((e) => Image.asset(e))
+                        .toList(),
+                  ),
+                ),
+              ),
+              SizedBox(
+                width: 100,
+                child: ListWheelScrollView.useDelegate(
+                  physics: const BouncingScrollPhysics(),
+                  itemExtent: 80,
+                  controller: ScrollController(),
+                  childDelegate: ListWheelChildLoopingListDelegate(
+                    children: viewModel.symbolList
+                        .map((e) => Image.asset(e))
+                        .toList(),
+                  ),
+                ),
+              ),
+              SizedBox(
+                width: 100,
+                child: ListWheelScrollView.useDelegate(
+                  physics: const BouncingScrollPhysics(),
+                  itemExtent: 80,
+                  controller: ScrollController(),
+                  childDelegate: ListWheelChildLoopingListDelegate(
+                    children: viewModel.symbolList
+                        .map((e) => Image.asset(e))
+                        .toList(),
+                  ),
+                ),
+              ),
+              SizedBox(
+                width: 200,
+                child: Text('sampleText'),
+              ),
+            ],
           ),
-          Positioned(
-            top: 135,
-            left: 100,
-            width: 70,
-            child: Image.asset(viewModel.firstReelSymbol ?? ''),
-          ),
-          Positioned(
-            top: 135,
-            left: 163,
-            width: 70,
-            child: Image.asset(viewModel.secondReelSymbol ?? ''),
-          ),
-          Positioned(
-            top: 135,
-            left: 227,
-            width: 70,
-            child: Image.asset(viewModel.thirdReelSymbol ?? ''),
-          ),
-          GestureDetector(
-            child: viewModel.isPulled
-                ? Image.asset('assets/images/slot-machine3.png')
-                : Image.asset('assets/images/slot-machine2.png'),
-            onTap: () {
-              viewModel.pullLever();
-              // viewModel.setReel();
-            },
-          ),
-        ]),
+        ),
       ),
     );
   }
