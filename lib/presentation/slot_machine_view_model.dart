@@ -23,6 +23,30 @@ class SlotMachineViewModel with ChangeNotifier {
     cherrySymbolImagePath,
     bellSymbolImagePath,
     barSymbolImagePath,
+    sevenSymbolImagePath,
+    cherrySymbolImagePath,
+    bellSymbolImagePath,
+    barSymbolImagePath,
+    sevenSymbolImagePath,
+    cherrySymbolImagePath,
+    bellSymbolImagePath,
+    barSymbolImagePath,
+    sevenSymbolImagePath,
+    cherrySymbolImagePath,
+    bellSymbolImagePath,
+    barSymbolImagePath,
+    sevenSymbolImagePath,
+    cherrySymbolImagePath,
+    bellSymbolImagePath,
+    barSymbolImagePath,
+    sevenSymbolImagePath,
+    cherrySymbolImagePath,
+    bellSymbolImagePath,
+    barSymbolImagePath,
+    sevenSymbolImagePath,
+    cherrySymbolImagePath,
+    bellSymbolImagePath,
+    barSymbolImagePath,
   ];
 
   final List<String> _reels = [];
@@ -46,6 +70,8 @@ class SlotMachineViewModel with ChangeNotifier {
   String? get secondReelSymbol => _secondReelSymbol;
 
   String? get thirdReelSymbol => _thirdReelSymbol;
+
+  List<String> get symbolList => _symbolList;
 
   bool get isInit => _isInit;
 
