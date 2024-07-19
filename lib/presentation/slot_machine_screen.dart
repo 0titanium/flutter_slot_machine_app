@@ -30,11 +30,11 @@ class _SlotMachineScreenState extends State<SlotMachineScreen> {
 
   void spinWheels() async {
     final random = Random();
-    final baseSpinDuration = Duration(milliseconds: 3000);
-    final delayBetweenStarts = Duration(milliseconds: 100);
+    const baseSpinDuration = Duration(milliseconds: 3000);
+    const delayBetweenStarts = Duration(milliseconds: 100);
 
-    final itemExtent = 80.0;
-    final totalItems = 28;
+    const itemExtent = 80.0;
+    const totalItems = 28;
 
     List<Future> spinFutures = [];
 
@@ -55,7 +55,7 @@ class _SlotMachineScreenState extends State<SlotMachineScreen> {
   Future<void> spinWheel(int index, Duration spinDuration, double itemExtent,
       int totalItems, Random random) async {
     // 최소 회전 수 설정 (예: 5바퀴)
-    final minRevolutions = 5;
+    const minRevolutions = 5;
 
     // 추가 랜덤 회전 (0-2 바퀴)
     final additionalRevolutions = random.nextInt(3);
@@ -80,7 +80,7 @@ class _SlotMachineScreenState extends State<SlotMachineScreen> {
     final finalPosition = (endPosition / itemExtent).round() * itemExtent;
     await controllers[index].animateTo(
       finalPosition,
-      duration: Duration(milliseconds: 200),
+      duration: const Duration(milliseconds: 200),
       curve: Curves.easeOut,
     );
   }
@@ -88,10 +88,7 @@ class _SlotMachineScreenState extends State<SlotMachineScreen> {
   @override
   Widget build(BuildContext context) {
     final viewModel = context.watch<SlotMachineViewModel>();
-    if (!viewModel.isInit) {
-      viewModel.setGameMoney();
-      viewModel.setReel();
-    }
+    viewModel.setGameMoney();
 
     return Scaffold(
       body: SafeArea(
@@ -107,7 +104,7 @@ class _SlotMachineScreenState extends State<SlotMachineScreen> {
                 ),
                 child: Row(
                   children: [
-                    Icon(Icons.monetization_on_outlined),
+                    const Icon(Icons.monetization_on_outlined),
                     Text(viewModel.gameMoney!),
                   ],
                 ),
@@ -115,7 +112,7 @@ class _SlotMachineScreenState extends State<SlotMachineScreen> {
               SizedBox(
                 width: 100,
                 child: ListWheelScrollView.useDelegate(
-                  physics: const BouncingScrollPhysics(),
+                  physics: const NeverScrollableScrollPhysics(),
                   itemExtent: 80,
                   controller: controllers[0],
                   childDelegate: ListWheelChildLoopingListDelegate(
@@ -128,7 +125,7 @@ class _SlotMachineScreenState extends State<SlotMachineScreen> {
               SizedBox(
                 width: 100,
                 child: ListWheelScrollView.useDelegate(
-                  physics: const BouncingScrollPhysics(),
+                  physics: const NeverScrollableScrollPhysics(),
                   itemExtent: 80,
                   controller: controllers[1],
                   childDelegate: ListWheelChildLoopingListDelegate(
@@ -141,7 +138,7 @@ class _SlotMachineScreenState extends State<SlotMachineScreen> {
               SizedBox(
                 width: 100,
                 child: ListWheelScrollView.useDelegate(
-                  physics: const BouncingScrollPhysics(),
+                  physics: const NeverScrollableScrollPhysics(),
                   itemExtent: 80,
                   controller: controllers[2],
                   childDelegate: ListWheelChildLoopingListDelegate(
@@ -158,8 +155,8 @@ class _SlotMachineScreenState extends State<SlotMachineScreen> {
                   border: Border.all(width: 2),
                 ),
                 child: ElevatedButton(
-                  child: Text('Spin'),
                   onPressed: spinWheels,
+                  child: const Text('Spin'),
                 ),
               ),
             ],
