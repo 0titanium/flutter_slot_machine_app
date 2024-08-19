@@ -76,6 +76,14 @@ class SlotMachineViewModel with ChangeNotifier {
   }
 
   void spinWheels() async {
+    int check = 0;
+    if (int.parse(_gameMoney ?? '1000') < 100) {
+      return;
+    }
+
+    debugPrint('-----------$check-----------');
+    payForSpin();
+
     final random = Random();
     const baseSpinDuration = Duration(milliseconds: 3000);
     const delayBetweenStarts = Duration(milliseconds: 100);
@@ -102,8 +110,13 @@ class SlotMachineViewModel with ChangeNotifier {
     isMatch();
   }
 
-  Future<void> spinWheel(int index, Duration spinDuration, double itemExtent,
-      int totalItems, Random random) async {
+  Future<void> spinWheel(
+    int index,
+    Duration spinDuration,
+    double itemExtent,
+    int totalItems,
+    Random random,
+  ) async {
     const minRevolutions = 5;
     final additionalRevolutions = random.nextInt(3);
     final totalSpins = (minRevolutions + additionalRevolutions) * totalItems +
@@ -154,12 +167,6 @@ class SlotMachineViewModel with ChangeNotifier {
   }
 
   void isMatch() {
-    if (int.parse(_gameMoney ?? '1000') < 100) {
-      return;
-    }
-
-    payForSpin();
-
     if (firstReelSymbol == sevenSymbol &&
         firstReelSymbol == secondReelSymbol &&
         firstReelSymbol == thirdReelSymbol) {
